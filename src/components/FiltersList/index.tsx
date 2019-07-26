@@ -1,7 +1,14 @@
 import * as React from "react";
 import { Checkbox, Collapse, Badge } from "antd";
 import CollapsePanel from "antd/lib/collapse/CollapsePanel";
-import { Filter } from "./index";
+
+export interface Filter {
+  name: string;
+  values: {
+    id: string;
+    label: string;
+  }[];
+}
 
 export interface FacetUpdatePayload {
   facetName: string;
