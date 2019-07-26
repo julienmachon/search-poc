@@ -1,4 +1,20 @@
+@import "../node_modules/antd/dist/antd.css";
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-color: #ff6666;
+  display: flex;
+}
+
+.Filters {
+  min-width: 200px;
+  min-height: 200px;
+  background-color: blue;
+}
+
+.Results {
+  min-width: 200px;
+  background-color: violet;
+  flex-grow: 1;
 }

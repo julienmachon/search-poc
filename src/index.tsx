@@ -1,13 +1,16 @@
 import * as React from "react";
 import { render } from "react-dom";
 
+import Filters from "./components/Filters";
+import Results from "./components/Results";
+
 import "./styles.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Search POC</h1>
-      <h2>🔍🔍🔍🔍🔍🔍</h2>
+      <Filters />
+      <Results />
     </div>
   );
 }
