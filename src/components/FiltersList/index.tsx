@@ -10,18 +10,22 @@ export interface Filter {
   }[];
 }
 
-export interface FacetUpdatePayload {
+export interface AppliedFilters {
+  [filterName: string]: string[];
+}
+
+export interface FilterUpdatePayload {
   facetName: string;
   values: string[];
 }
 
-interface FacetProps {
-  appliedFilters?: { [filterName: string]: string[] };
+interface FilterProps {
+  appliedFilters?: AppliedFilters;
   filters?: Filter[];
-  updateFilters?: (filterUpdate: FacetUpdatePayload) => void;
+  updateFilters?: (filterUpdate: FilterUpdatePayload) => void;
 }
 
-const FacetList: React.FunctionComponent<FacetProps> = props => {
+const FacetList: React.FunctionComponent<FilterProps> = props => {
   const { appliedFilters = {}, filters, updateFilters = () => {} } = props;
 
   const handleChange = (facetName: string, values: any[]) => {
