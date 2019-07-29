@@ -42,5 +42,21 @@ export const SETTINGS = {
         # ?s nxv:constrainedBy nshapes:dataset .
       }
     }`
+  },
+  sparqlDatasetQueryConfig: {
+    vocab: `
+        prefix nxs: <https://neuroshapes.org/>
+        prefix nxv: <https://bluebrain.github.io/nexus/vocabulary/>
+      `,
+    graphs: {
+      brainRegion: `Graph ?g {
+        VALUES ?brainRegions { #{values} }
+        ?s nxs:brainLocation / nxs:brainRegion ?brainRegions .
+      }`,
+      type: `Graph ?g {
+        VALUES ?types { #{values} }
+        ?s rdf:type ?types .
+      }`
+    }
   }
 };
