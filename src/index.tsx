@@ -4,38 +4,14 @@ import { NexusClient, createNexusClient } from "@bbp/nexus-sdk";
 import { NexusProvider } from "@bbp/react-nexus";
 import { setUpSession, setToken } from "./utils/auth";
 import Header from "./components/Header";
-import FiltersList from "./components/FiltersList";
+import Filters from "./containers/Filters";
 import Results from "./components/Results";
 import { SETTINGS } from "./config";
 
 import "antd/dist/antd.css";
 import "./styles.css";
 
-const appliedFacets = {};
-const filters = [
-  {
-    name: "Brain Region",
-    values: [
-      {
-        id: "Somatosensory Cortex",
-        label: "Somatosensory Cortex"
-      }
-    ]
-  },
-  {
-    name: "M-Type",
-    values: [
-      {
-        id: "123",
-        label: "Layer 5 PC"
-      }
-    ]
-  }
-];
-const handleUpdateFacets = () => {};
-
 async function main() {
-  // setup user session
   const [userManager, user] = await setUpSession();
   // create nexus instance
   const nexus: NexusClient = createNexusClient({
@@ -49,11 +25,7 @@ async function main() {
     <NexusProvider nexusClient={nexus}>
       <div className="App">
         <Header user={user} userManager={userManager} />
-        <FiltersList
-          appliedFilters={appliedFacets}
-          filters={filters}
-          updateFilters={handleUpdateFacets}
-        />
+        <Filters {...{ ...SETTINGS.sparqlFilterQuery }} />
         <Results />
       </div>
     </NexusProvider>,
