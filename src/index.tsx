@@ -25,7 +25,7 @@ async function main() {
     <NexusProvider nexusClient={nexus}>
       <div className="App">
         <Header user={user} userManager={userManager} />
-        <Filters />
+        <Filters {...{ ...SETTINGS.sparqlFilterQuery }} />
         <Results />
       </div>
     </NexusProvider>,
