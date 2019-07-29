@@ -4,5 +4,5 @@ export const SETTINGS = {
   serviceAccountName: "serviceaccounts",
   clientId: "nexus-web",
   redirectUrl: window.location.origin,
-  environment: "https://dev.nexus.ocp.bbp.epfl.ch/v1"
+  environment: "https://staging.nexus.ocp.bbp.epfl.ch/v1"
 };
