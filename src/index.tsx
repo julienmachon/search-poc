@@ -1,5 +1,8 @@
 import * as React from "react";
 import { render } from "react-dom";
+import { NexusClient, createNexusClient } from "@bbp/nexus-sdk";
+import { NexusProvider } from "@bbp/react-nexus";
+import { setUpSession, setToken } from "./utils/auth";
 import Header from "./components/Header";
 import FiltersList from "./components/FiltersList";
 import Results from "./components/Results";
@@ -30,19 +33,30 @@ const filters = [
 ];
 const handleUpdateFacets = () => {};
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <FiltersList
-        appliedFilters={appliedFacets}
-        filters={filters}
-        updateFilters={handleUpdateFacets}
-      />
-      <Results />
-    </div>
+async function main() {
+  // setup user session
+  const [userManager, user] = await setUpSession();
+  // create nexus instance
+  const nexus: NexusClient = createNexusClient({
+    uri: "https://dev.nexus.ocp.bbp.epfl.ch/v1",
+    fetch,
+    links: [setToken]
+  });
+
+  const rootElement = document.getElementById("root");
+  render(
+    <NexusProvider nexusClient={nexus}>
+      <div className="App">
+        <Header user={user} userManager={userManager} />
+        <FiltersList
+          appliedFilters={appliedFacets}
+          filters={filters}
+          updateFilters={handleUpdateFacets}
+        />
+        <Results />
+      </div>
+    </NexusProvider>,
+    rootElement
   );
 }
-
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+main();

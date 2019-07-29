@@ -2,9 +2,16 @@
 
 .App {
   font-family: sans-serif;
-  text-align: center;
   background-color: #ff6666;
   display: flex;
+  flex-flow: row wrap;
+}
+
+.Header {
+  flex: 1 100%;
+  background-color: green;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .Filters {
