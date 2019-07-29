@@ -4,8 +4,7 @@ import { NexusClient, createNexusClient } from "@bbp/nexus-sdk";
 import { NexusProvider } from "@bbp/react-nexus";
 import { setUpSession, setToken } from "./utils/auth";
 import Header from "./components/Header";
-import Filters from "./containers/Filters";
-import Results from "./components/Results";
+import SparqlView from "./containers/SparqlView";
 import { SETTINGS } from "./config";
 
 import "antd/dist/antd.css";
@@ -25,8 +24,7 @@ async function main() {
     <NexusProvider nexusClient={nexus}>
       <div className="App">
         <Header user={user} userManager={userManager} />
-        <Filters {...{ ...SETTINGS.sparqlFilterQuery }} />
-        <Results />
+        <SparqlView sparqlFilterQuery={SETTINGS.sparqlFilterQuery} />
       </div>
     </NexusProvider>,
     rootElement
