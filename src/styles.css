@@ -9,9 +9,23 @@
 
 .Header {
   flex: 1 100%;
-  background-color: green;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+.Header_logo {
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  left: 50%;
+}
+.Header_auth {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  width: 3em;
+  height: 3em;
 }
 
 .Filters {

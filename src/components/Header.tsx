@@ -86,11 +86,14 @@ const Header: React.FunctionComponent<{
 
   return (
     <div className="Header">
-      {user ? (
-        <Logout onLogout={handleLogout} userName={user.profile.name} />
-      ) : (
-        <Login realms={realms} onRealmSelected={handleLogin} />
-      )}
+      <img className="Header_logo" src="nexusLogo.svg" alt="Nexus" />
+      <div className="Header_auth">
+        {user ? (
+          <Logout onLogout={handleLogout} userName={user.profile.name} />
+        ) : (
+          <Login realms={realms} onRealmSelected={handleLogin} />
+        )}
+      </div>
     </div>
   );
 };
