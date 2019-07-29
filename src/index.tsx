@@ -6,6 +6,7 @@ import { setUpSession, setToken } from "./utils/auth";
 import Header from "./components/Header";
 import FiltersList from "./components/FiltersList";
 import Results from "./components/Results";
+import { SETTINGS } from "./config";
 
 import "antd/dist/antd.css";
 import "./styles.css";
@@ -38,7 +39,7 @@ async function main() {
   const [userManager, user] = await setUpSession();
   // create nexus instance
   const nexus: NexusClient = createNexusClient({
-    uri: "https://dev.nexus.ocp.bbp.epfl.ch/v1",
+    uri: SETTINGS.environment,
     fetch,
     links: [setToken]
   });

@@ -3,5 +3,6 @@ export const SETTINGS = {
   bearerTokenKey: "nexusToken",
   serviceAccountName: "serviceaccounts",
   clientId: "nexus-web",
-  redirectUrl: window.location.origin
+  redirectUrl: window.location.origin,
+  environment: "https://dev.nexus.ocp.bbp.epfl.ch/v1"
 };
