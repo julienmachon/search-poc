@@ -10,34 +10,38 @@ export interface Filter {
   }[];
 }
 
-export interface FacetUpdatePayload {
-  facetName: string;
+export interface AppliedFilters {
+  [filterName: string]: string[];
+}
+
+export interface FilterUpdatePayload {
+  filterName: string;
   values: string[];
 }
 
-interface FacetProps {
-  appliedFilters?: { [filterName: string]: string[] };
+interface FilterProps {
+  appliedFilters?: AppliedFilters;
   filters?: Filter[];
-  updateFilters?: (filterUpdate: FacetUpdatePayload) => void;
+  updateFilters?: (filterUpdate: FilterUpdatePayload) => void;
 }
 
-const FacetList: React.FunctionComponent<FacetProps> = props => {
+const FacetList: React.FunctionComponent<FilterProps> = props => {
   const { appliedFilters = {}, filters, updateFilters = () => {} } = props;
 
-  const handleChange = (facetName: string, values: any[]) => {
+  const handleChange = (filterName: string, values: any[]) => {
     updateFilters({
-      facetName,
+      filterName,
       values
     });
   };
 
   return (
-    <div className="facet-list">
+    <div className="filter-list">
       <Collapse bordered={false}>
         {filters &&
           !!filters.length &&
-          filters.map((facet, index) => {
-            const groupAppliedFilters = appliedFilters[facet.name];
+          filters.map((filter, index) => {
+            const groupAppliedFilters = appliedFilters[filter.name];
             const groupAppliedFiltersCount = groupAppliedFilters
               ? groupAppliedFilters.length
               : 0;
@@ -48,24 +52,24 @@ const FacetList: React.FunctionComponent<FacetProps> = props => {
                   justifyContent: "space-between"
                 }}
               >
-                <div style={{ width: "60%" }}>{facet.name}</div>
+                <div style={{ width: "60%" }}>{filter.name}</div>
                 <div style={{ width: "20%" }}>
                   <Badge
                     count={groupAppliedFiltersCount}
                     style={{ backgroundColor: "#44c7f4" }}
                   />
                 </div>
-                <div>{facet.values.length}</div>
+                <div>{filter.values.length}</div>
               </div>
             );
             return (
               <CollapsePanel header={header} key={`$${index}`}>
                 <Checkbox.Group
                   style={{ width: "100%" }}
-                  onChange={values => handleChange(facet.name, values)}
+                  onChange={values => handleChange(filter.name, values)}
                 >
                   <ul className="checkbox-list">
-                    {facet.values.map(value => {
+                    {filter.values.map(value => {
                       return (
                         <li key={value.id}>
                           <Checkbox

@@ -1,24 +1,26 @@
 import * as React from "react";
 import { useFilterQuery } from "../hooks/sparql/useSparqlFilterQuery";
-import FiltersList from "../components/FiltersList";
+import FiltersList, {
+  AppliedFilters,
+  FilterUpdatePayload
+} from "../components/FiltersList";
 
 const FiltersContainer: React.FunctionComponent<{
   orgLabel: string;
   projectLabel: string;
   viewID: string;
   query: string;
+  appliedFilters: AppliedFilters;
+  updateFilters?: (filterUpdate: FilterUpdatePayload) => void;
 }> = props => {
-  const { loading, error, data } = useFilterQuery(props);
-
-  const appliedFilters = {};
-
-  const handleUpdateFilters = () => {};
+  const { updateFilters, appliedFilters, ...rest } = props;
+  const { loading, error, data } = useFilterQuery(rest);
 
   return (
     !loading && (
       <FiltersList
         {...{
-          handleUpdateFilters,
+          updateFilters,
           appliedFilters,
           filters: data
         }}
