@@ -3,5 +3,5 @@ export const SETTINGS = {
   bearerTokenKey: "nexusToken",
   serviceAccountName: "serviceaccounts",
   clientId: "nexus-web",
-  redirectUrl: "https://o2h7l.csb.app/" // change this with whatever the codesandbox URL is
+  redirectUrl: window.location.origin
 };
