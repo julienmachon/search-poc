@@ -1,9 +1,10 @@
 import * as React from "react";
 import { render } from "react-dom";
-
+import Header from "./components/Header";
 import FiltersList from "./components/FiltersList";
 import Results from "./components/Results";
 
+import "antd/dist/antd.css";
 import "./styles.css";
 
 const appliedFacets = {};
@@ -32,6 +33,7 @@ const handleUpdateFacets = () => {};
 function App() {
   return (
     <div className="App">
+      <Header />
       <FiltersList
         appliedFilters={appliedFacets}
         filters={filters}
