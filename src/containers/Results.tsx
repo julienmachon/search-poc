@@ -27,7 +27,7 @@ const FiltersContainer: React.FunctionComponent<{
     query
   });
 
-  return !loading && <Results {...data} />;
+  return !loading && data && <Results {...data} />;
 };
 
 export default FiltersContainer;
