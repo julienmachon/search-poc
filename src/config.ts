@@ -56,6 +56,11 @@ export const SETTINGS = {
       type: `Graph ?g {
         VALUES ?types { #{values} }
         ?s rdf:type ?types .
+      }`,
+      mTypeLabel: `
+      Graph ?g {
+        VALUES ?mTypes { #{labels} }
+          ?s nxs:annotation / nxs:hasBody / <http://www.w3.org/2000/01/rdf-schema#label> ?mTypes
       }`
     }
   }

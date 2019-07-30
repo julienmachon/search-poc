@@ -20,6 +20,7 @@ const FiltersContainer: React.FunctionComponent<{
   } = props;
 
   const query = makeDatasetQuery(datasetQueryConfig, appliedFilters, 20, 0);
+
   const { loading, error, data } = useDatasetQuery({
     orgLabel,
     projectLabel,
