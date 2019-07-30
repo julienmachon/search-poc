@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useDatasetQuery } from "../hooks/sparql/useSparqlFilterQuery";
-import { AppliedFilters } from "../components/FiltersList";
+import { useDatasetQuery } from "../hooks/sparql";
+import { AppliedFilters } from "../components/Filters";
 import Results from "../components/Results";
-import { DatasetQueryConfig, makeDatasetQuery } from "../utils/sparql/dataset";
+import { DatasetQueryConfig, makeDatasetQuery } from "../utils/sparql";
 
 const FiltersContainer: React.FunctionComponent<{
   orgLabel: string;
@@ -20,9 +20,6 @@ const FiltersContainer: React.FunctionComponent<{
   } = props;
 
   const query = makeDatasetQuery(datasetQueryConfig, appliedFilters, 20, 0);
-
-  console.log({ query, appliedFilters });
-
   const { loading, error, data } = useDatasetQuery({
     orgLabel,
     projectLabel,

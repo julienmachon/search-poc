@@ -1,7 +1,8 @@
 import { useNexus } from "@bbp/react-nexus";
-import { mapQueryResultsToFilters } from "../../utils/sparql/filters";
-import { makeDatasetFromSparlQueryResponse } from "../../utils/sparql/dataset";
-import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
+import {
+  makeDatasetFromSparlQueryResponse,
+  mapQueryResultsToFilters
+} from "../utils/sparql";
 
 export const useFilterQuery = ({
   orgLabel,
@@ -40,8 +41,6 @@ export const useDatasetQuery = ({
     nexus => nexus.View.sparqlQuery(orgLabel, projectLabel, viewID, query),
     [query]
   );
-
-  console.log(data, query);
 
   return {
     data: data && makeDatasetFromSparlQueryResponse(data),

@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useFilterQuery } from "../hooks/sparql/useSparqlFilterQuery";
+import { useFilterQuery } from "../hooks/sparql";
 import FiltersList, {
   AppliedFilters,
   FilterUpdatePayload
-} from "../components/FiltersList";
+} from "../components/Filters";
 
 const FiltersContainer: React.FunctionComponent<{
   orgLabel: string;
