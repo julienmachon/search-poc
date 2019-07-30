@@ -134,9 +134,12 @@ export const makeDatasetQuery = (
       if (ids && ids.length) {
         // for the sparql query to work we need to always wrap URIs in <>
         const values = (ids || []).map(id => `<${id}>`).join(" ");
+        const labels = (ids || []).map(id => `"${id}"`).join(" ");
 
         // now we need to add the appliedFacet values, if available
-        const parseQuery = unparsedQuery.replace("#{values}", values);
+        const parseQuery = unparsedQuery
+          .replace("#{values}", values)
+          .replace("#{labels}", labels);
         return parseQuery;
       }
       return null;
