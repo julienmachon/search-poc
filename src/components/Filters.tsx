@@ -25,7 +25,7 @@ interface FilterProps {
   updateFilters?: (filterUpdate: FilterUpdatePayload) => void;
 }
 
-const FacetList: React.FunctionComponent<FilterProps> = props => {
+const Filters: React.FunctionComponent<FilterProps> = props => {
   const { appliedFilters = {}, filters, updateFilters = () => {} } = props;
 
   const handleChange = (filterName: string, values: any[]) => {
@@ -94,4 +94,4 @@ const FacetList: React.FunctionComponent<FilterProps> = props => {
   );
 };
 
-export default FacetList;
+export default Filters;
