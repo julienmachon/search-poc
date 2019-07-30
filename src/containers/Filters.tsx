@@ -5,6 +5,7 @@ import FiltersList, {
   FilterUpdatePayload
 } from "../components/Filters";
 
+// @ts-ignore
 const FiltersContainer: React.FunctionComponent<{
   orgLabel: string;
   projectLabel: string;

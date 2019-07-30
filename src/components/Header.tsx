@@ -58,6 +58,9 @@ const Header: React.FunctionComponent<{
   }, []);
 
   const handleLogin = (realm: Realm) => {
+    if (!userManager) {
+      return;
+    }
     const nextUserManagerConfig = getConfig(realm);
     const nextUserManager = new UserManager(nextUserManagerConfig);
     nextUserManager
@@ -74,6 +77,9 @@ const Header: React.FunctionComponent<{
   };
 
   const handleLogout = () => {
+    if (!userManager) {
+      return;
+    }
     userManager
       .signoutRedirect()
       .then(() => {

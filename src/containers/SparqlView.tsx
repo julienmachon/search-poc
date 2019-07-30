@@ -4,7 +4,7 @@ import Results from "../containers/Results";
 import { AppliedFilters, FilterUpdatePayload } from "../components/Filters";
 
 const Workspace: React.FunctionComponent<{
-  sparqlDatasetQueryConfig;
+  sparqlDatasetQueryConfig: any;
   sparqlFilterQuery: {
     orgLabel: string;
     projectLabel: string;

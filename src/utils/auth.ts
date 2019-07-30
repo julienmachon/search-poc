@@ -1,6 +1,6 @@
 import { Realm } from "@bbp/nexus-sdk";
 import { UserManager, User } from "oidc-client";
-import { Operation, Link } from "@bbp/nexus-link";
+import { Operation, Link, Observable } from "@bbp/nexus-link";
 import { SETTINGS } from "../config";
 
 // creates a OIDC config based on input realm
@@ -17,17 +17,18 @@ export function getConfig(realm?: Realm) {
 }
 
 // link that sets the bearer token before each nexus call
-export const setToken: Link = (operation: Operation, forward: Link) => {
+export const setToken: Link = (operation: Operation, forward?: Link) => {
   const token = localStorage.getItem(SETTINGS.bearerTokenKey);
-  const authHeader = token ? { Authorization: `Bearer ${token}` } : {};
+  const nextHeaders: any = { ...operation.headers };
+  token && (nextHeaders["Authorization"] = `Bearer ${token}`);
+
   const nextOperation = {
     ...operation,
-    headers: {
-      ...operation.headers,
-      ...authHeader
-    }
+    headers: nextHeaders
   };
-  return forward(nextOperation);
+  console.log(nextOperation);
+
+  return forward ? forward(nextOperation) : new Observable();
 };
 
 /**
@@ -38,12 +39,12 @@ export const setToken: Link = (operation: Operation, forward: Link) => {
  * - load user info
  * - return a ref of user manager instance and the user
  */
-export async function setUpSession(): Promise<[UserManager, User]> {
-  let user: User = null;
-  let userManager: UserManager = null;
+export async function setUpSession(): Promise<[UserManager, User | null]> {
+  let user: User | null = null;
+  let userManager: UserManager | null = null;
   // Get preferred realm
   const preferredRealm: Realm = JSON.parse(
-    localStorage.getItem(SETTINGS.preferredRealmKey)
+    localStorage.getItem(SETTINGS.preferredRealmKey) || "{}"
   );
 
   // then create User Manager with preferred realm issuer
