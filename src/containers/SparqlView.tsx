@@ -1,9 +1,10 @@
 import * as React from "react";
 import Filters from "./Filters";
-import Results from "../components/Results";
+import Results from "../containers/Results";
 import { AppliedFilters, FilterUpdatePayload } from "../components/FiltersList";
 
 const Workspace: React.FunctionComponent<{
+  sparqlDatasetQueryConfig;
   sparqlFilterQuery: {
     orgLabel: string;
     projectLabel: string;
@@ -14,7 +15,7 @@ const Workspace: React.FunctionComponent<{
   const [appliedFilters, setAppliedFilters] = React.useState<AppliedFilters>(
     {}
   );
-  const { sparqlFilterQuery } = props;
+  const { sparqlFilterQuery, sparqlDatasetQueryConfig } = props;
 
   const updateFilters = (filterUpdate: FilterUpdatePayload) => {
     setAppliedFilters({
@@ -26,7 +27,13 @@ const Workspace: React.FunctionComponent<{
   return (
     <>
       <Filters {...{ ...sparqlFilterQuery, appliedFilters, updateFilters }} />
-      <Results />
+      <Results
+        {...{
+          ...sparqlFilterQuery,
+          datasetQueryConfig: sparqlDatasetQueryConfig,
+          appliedFilters
+        }}
+      />
     </>
   );
 };
